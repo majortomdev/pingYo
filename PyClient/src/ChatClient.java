@@ -1,5 +1,9 @@
 import javax.swing.*;
 import java.awt.*;
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.io.PrintWriter;
+import java.net.Socket;
 
 public class ChatClient {
 
@@ -8,6 +12,8 @@ public class ChatClient {
     static JTextField textField = new JTextField(40);
     static JLabel blankLabel = new JLabel("        ");
     static JButton sendButton = new JButton("Send");
+    static BufferedReader in;
+    static PrintWriter out;
 
     ChatClient(){
 
@@ -25,7 +31,22 @@ public class ChatClient {
         chatArea.setEditable(false);
 
     }
-    public static void main(String[] args) {
+
+    void startChat() throws Exception {
+        String ipAddress = JOptionPane.showInputDialog(
+                chatWindow,"Enter IP Address:","IP Address Required!",JOptionPane.PLAIN_MESSAGE
+        );
+
+        Socket soc = new Socket(ipAddress, 7654);
+        in = new BufferedReader(new InputStreamReader(soc.getInputStream()));
+        out = new PrintWriter(soc.getOutputStream(),true);
+
+        while(true){
+            //for incoming messages....tbc
+        }
+    }
+    public static void main(String[] args) throws Exception {
         ChatClient client = new ChatClient();
+        client.startChat();
     }
 }
