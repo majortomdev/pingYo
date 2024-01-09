@@ -1,8 +1,12 @@
 import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.ArrayList;
 
 public class ChatServer {
+
+    static ArrayList<String> userNames = new ArrayList<String>();
+    static ArrayList<PrintWriter> printWriters = new ArrayList<PrintWriter>();
 
     public static void main(String[] args)  {
 
