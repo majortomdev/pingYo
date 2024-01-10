@@ -30,6 +30,9 @@ public class ChatClient {
         textField.setEditable(false);
         chatArea.setEditable(false);
 
+        sendButton.addActionListener(new Listener());//so server will get sent text on this button press
+        textField.addActionListener(new Listener());//repeating myself here to include <ENTER> press for same result
+
     }
 
     void startChat() throws Exception {
@@ -61,6 +64,8 @@ public class ChatClient {
                 out.println(name);
             }else if (str.equals("Name accepted")){
                 textField.setEditable(true);
+            }else {
+                chatArea.append(str+"\n");
             }
         }
     }

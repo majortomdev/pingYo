@@ -39,6 +39,16 @@ public class ConversationHandler extends Thread{
             out.println("Name accepted");
             ChatServer.printWriters.add(out);
 
+            while (true){
+                String message = in.readLine();
+                if(message==null){
+                    return;
+                }
+                for (PrintWriter writer : ChatServer.printWriters){
+                    writer.println(name+": "+message);
+                }
+            }
+
         }catch (Exception e){
 
         }
