@@ -21,9 +21,9 @@ public class ConversationHandler extends Thread{
             int count =0;
             while(true){
                 if(count>0){
-                    out.println("Name already Exists!!!");
+                    out.println("Name already exists!!!");
                 }else {
-                    out.println("Name Required");
+                    out.println("Name required");
                 }
 
                 name = in.readLine();
@@ -35,6 +35,9 @@ public class ConversationHandler extends Thread{
                 }
                 count++;
             }
+
+            out.println("Name accepted");
+            ChatServer.printWriters.add(out);
 
         }catch (Exception e){
 

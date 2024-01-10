@@ -42,7 +42,26 @@ public class ChatClient {
         out = new PrintWriter(soc.getOutputStream(),true);
 
         while(true){
-            //for incoming messages....tbc
+            String str = in.readLine();
+            if (str.equals("Name required")){
+                String name = JOptionPane.showInputDialog(
+                        chatWindow,
+                        "Enter a unique name: ",
+                        "Name required!!",
+                        JOptionPane.PLAIN_MESSAGE);
+
+                out.println(name);
+            } else if (str.equals("Name already exists!!!")){
+                String name = JOptionPane.showInputDialog(
+                        chatWindow,
+                        "Enter another name: ",
+                        "Name already exists!!",
+                        JOptionPane.WARNING_MESSAGE);
+
+                out.println(name);
+            }else if (str.equals("Name accepted")){
+                textField.setEditable(true);
+            }
         }
     }
     public static void main(String[] args) throws Exception {
