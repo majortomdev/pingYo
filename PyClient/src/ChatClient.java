@@ -14,14 +14,17 @@ public class ChatClient {
     static JButton sendButton = new JButton("Send");
     static BufferedReader in;
     static PrintWriter out;
+    static JLabel nameLabel = new JLabel("      ");
 
     ChatClient(){
 
         chatWindow.setLayout(new FlowLayout());
+        chatWindow.add(nameLabel);
         chatWindow.add(new JScrollPane(chatArea));
         chatWindow.add(blankLabel);
         chatWindow.add(textField);
         chatWindow.add(sendButton);
+        //chatWindow.add(nameLabel);
 
         chatWindow.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         chatWindow.setSize(475,500);
@@ -62,8 +65,9 @@ public class ChatClient {
                         JOptionPane.WARNING_MESSAGE);
 
                 out.println(name);
-            }else if (str.equals("Name accepted")){
+            }else if (str.startsWith("Name accepted")){
                 textField.setEditable(true);
+                nameLabel.setText("You are logged in as: "+str.substring(14));
             }else {
                 chatArea.append(str+"\n");
             }
