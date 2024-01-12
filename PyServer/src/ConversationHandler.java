@@ -1,7 +1,4 @@
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.PrintWriter;
+import java.io.*;
 import java.net.Socket;
 
 public class ConversationHandler extends Thread{
@@ -9,9 +6,14 @@ public class ConversationHandler extends Thread{
     BufferedReader in;
     PrintWriter out;
     String name;
-
+    PrintWriter pw;
+    static FileWriter fw;
+    static BufferedWriter bw;
     public ConversationHandler(Socket socket)throws IOException{
         this.socket = socket;
+        fw = new FileWriter("C:\\Users\\user\\Desktop\\ChatServer-Logs.txt",true);
+        bw = new BufferedWriter(fw);
+        pw = new PrintWriter(bw, true);
     }
 
     public void run() {
@@ -44,6 +46,8 @@ public class ConversationHandler extends Thread{
                 if(message==null){
                     return;
                 }
+
+                pw.println(name+": "+message);
                 for (PrintWriter writer : ChatServer.printWriters){
                     writer.println(name+": "+message);
                 }
