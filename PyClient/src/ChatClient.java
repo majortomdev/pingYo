@@ -7,7 +7,7 @@ import java.net.Socket;
 
 public class ChatClient {
 
-    static JFrame chatWindow = new JFrame("PingYo Chat");
+    static JFrame chatWindow = new JFrame("PingYo Chat");//static as all swing components be uniform for each client
     static JTextArea chatArea = new JTextArea(22,40);
     static JTextField textField = new JTextField(40);
     static JLabel blankLabel = new JLabel("        ");
@@ -43,7 +43,7 @@ public class ChatClient {
                 chatWindow,"Enter IP Address:","IP Address Required!",JOptionPane.PLAIN_MESSAGE
         );
 
-        Socket soc = new Socket(ipAddress, 7654);
+        Socket soc = new Socket(ipAddress, 7654);//create a socket oject w/ port number to match server open port
         in = new BufferedReader(new InputStreamReader(soc.getInputStream()));
         out = new PrintWriter(soc.getOutputStream(),true);
 

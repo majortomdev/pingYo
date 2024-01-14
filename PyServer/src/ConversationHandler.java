@@ -2,7 +2,7 @@ import java.io.*;
 import java.net.Socket;
 
 public class ConversationHandler extends Thread{
-    Socket socket;
+    Socket socket;//ie the socket used for each individual convhandler/ thread...so will control chat to/from jframe
     BufferedReader in;
     PrintWriter out;
     String name;
@@ -16,10 +16,10 @@ public class ConversationHandler extends Thread{
         pw = new PrintWriter(bw, true);
     }
 
-    public void run() {
+    public void run() {//code to run on every new thread
         try {
-            in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-            out = new PrintWriter(socket.getOutputStream(),true);
+            in = new BufferedReader(new InputStreamReader(socket.getInputStream()));//getting data from socket
+            out = new PrintWriter(socket.getOutputStream(),true);//sending data to socket
             int count =0;
             while(true){
                 if(count>0){
@@ -47,7 +47,7 @@ public class ConversationHandler extends Thread{
                     return;
                 }
 
-                pw.println(name+": "+message);
+                pw.println(name+": "+message);//using my pw to log each message to external file
                 for (PrintWriter writer : ChatServer.printWriters){
                     writer.println(name+": "+message);
                 }
