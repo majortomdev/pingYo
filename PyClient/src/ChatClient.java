@@ -66,7 +66,7 @@ public class ChatClient {
 
                 out.println(name);
             }else if (str.startsWith("Name accepted")){
-                textField.setEditable(true);
+                textField.setEditable(true);//so opens my JTextfield 4 chat entry once the user enters a new name
                 nameLabel.setText("You are logged in as: "+str.substring(14));
             }else {
                 chatArea.append(str+"\n");
